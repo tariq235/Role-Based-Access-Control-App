@@ -1,4 +1,4 @@
-name: Update Changelog
+name: Release Please
 
 on:
   push:
@@ -6,30 +6,16 @@ on:
       - main
 
 jobs:
-  update-changelog:
+  release-please:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up Git
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-
-    - name: Update CHANGELOG.md on main
-      run: |
-        git fetch
-        git checkout main
-        git-chglog --output CHANGELOG.md
-        git add CHANGELOG.md
-        git commit -m "chore: Update CHANGELOG.md" || true
-        git push
-
-    - name: Update CHANGELOG.md on develop
-      run: |
-        git fetch
-        git checkout develop
-        git merge main --no-edit
-        git push
+    - name: Release Please
+      uses: google-github-actions/release-please-action@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        default-branch: main
+        release-type: simple
