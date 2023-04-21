@@ -1,19 +1,35 @@
+name: Update Changelog
+
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: write
-  pull-requests: write
-
-name: release-please
-
 jobs:
-  release-please:
+  update-changelog:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: google-github-actions/release-please-action@v3
-        with:
-          release-type: simple
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Update CHANGELOG.md on main
+      run: |
+        git fetch
+        git checkout main
+        git-chglog --output CHANGELOG.md
+        git add CHANGELOG.md
+        git commit -m "chore: Update CHANGELOG.md" || true
+        git push
+
+    - name: Update CHANGELOG.md on develop
+      run: |
+        git fetch
+        git checkout develop
+        git merge main --no-edit
+        git push
