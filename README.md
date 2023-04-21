@@ -7,6 +7,7 @@ The architecture of this app is based on React context API, which allows for sha
 
 index.js is the entry point of the application, it renders the App component and the NavBar component inside a React.Fragment.
 
+
 ## App.js
 
 App.js is the main component of the application, it uses the useState hook to manage the userRole and currentPage state. It also defines an updatePage function that updates the currentPage state when called. The component renders the NavBar component and the LoginPage or ExplorePage component depending on the value of currentPage.
