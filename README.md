@@ -2,6 +2,7 @@
 
 The architecture of this app is based on React context API, which allows for sharing state across different components without having to pass props through multiple levels of components. The app consists of several different components:
 
+
 ## index.js
 
 index.js is the entry point of the application, it renders the App component and the NavBar component inside a React.Fragment.
