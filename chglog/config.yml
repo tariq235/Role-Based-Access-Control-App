@@ -1,0 +1,15 @@
+template: |
+  # Changelog
+
+  All notable changes to this project will be documented in this file.
+
+  {{ range .Versions }}
+  ## {{ .Tag.Name }}
+  {{ range .Commits }}
+  * {{ .Subject }}
+  {{- end }}
+  {{- end }}
+
+options:
+  commits:
+    sort-by: Scope
