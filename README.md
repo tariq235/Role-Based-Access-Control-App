@@ -10,6 +10,7 @@ index.js is the entry point of the application, it renders the App component and
 
 App.js is the main component of the application, it uses the useState hook to manage the userRole and currentPage state. It also defines an updatePage function that updates the currentPage state when called. The component renders the NavBar component and the LoginPage or ExplorePage component depending on the value of currentPage.
 
+
 ## context.js
 
 context.js defines the AuthContext object that is used to share state across components.
